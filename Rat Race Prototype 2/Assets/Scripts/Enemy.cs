@@ -68,6 +68,16 @@ public class Enemy : MonoBehaviour
     {
         return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer); //Returns true if circle around the position of ground check is touching/inside the walllayer
     }
+    
+    void Update()
+    {
+        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+
+        if (direction.y > transform.position.y && isWallCling())
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpStrength);
+        }
+    }
     void FixedUpdate()
     {
         if (path == null)
@@ -90,7 +100,7 @@ public class Enemy : MonoBehaviour
         velocity.x = force.x;
         rb.linearVelocity = velocity;
 
-        if (direction.y > transform.position.y && isGrounded())
+        if (direction.y > transform.position.y && isWallCling())
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpStrength);
         }

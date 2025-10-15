@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
     private bool isWallSliding;
     private bool isWallJumping;
     private float wallJumpingDirection;
-    private float wallJumpingTime = 0.2f;
+    private float wallJumpingTime = 0.05f;
     private float wallJumpingCounter;
     private float wallJumpingDuration = 1f;
     private Vector2 wallJumpingPower = new Vector2(5f, 7f);
@@ -73,7 +73,7 @@ public class Enemy : MonoBehaviour
     {
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
 
-        if (direction.y > transform.position.y && isWallCling())
+        if (direction.y + 1 > transform.position.y && isWallCling())
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpStrength);
         }
@@ -143,7 +143,7 @@ public class Enemy : MonoBehaviour
         if (isWallSliding)
         {
             isWallJumping = false;
-            wallJumpingDirection = -transform.localScale.x;
+            wallJumpingDirection = transform.localScale.x;
             wallJumpingCounter = wallJumpingTime;
 
             CancelInvoke(nameof(StopWallJumping));

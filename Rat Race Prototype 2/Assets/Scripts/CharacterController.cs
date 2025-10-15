@@ -150,10 +150,12 @@ public class PlayerController : MonoBehaviour
         {
             isWallSliding = true;
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Clamp(rb.linearVelocity.y, -wallSlideSpeed, float.MaxValue));
+            rickyAnimator.SetBool("Wall", true);
         }
         else
         {
             isWallSliding = false;
+            rickyAnimator.SetBool("Wall", false);
         }
     }
 

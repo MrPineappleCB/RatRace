@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class PlayerController : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
     private float wallJumpingDuration = 1f;
     private Vector2 wallJumpingPower = new Vector2(5f, 7f);
     private Rigidbody2D rb;
+    private Animator rickyAnimator;
     private float movement;
     private float coyoteTime = 0.1f;
     private float coyoteTimeCounter;
@@ -38,6 +40,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>(); //Sets rb to the rigidbody2d of the player
+        rickyAnimator = gameObject.GetComponent<Animator>();
     }
 
     public bool isGrounded()
@@ -56,6 +59,7 @@ public class PlayerController : MonoBehaviour
         {
             coyoteTimeCounter = coyoteTime; //Sets the coyote time counter to the default time, lets you jump a bit after you're not touching the ground anymore, game stuff yes
             rb.gravityScale = 1;
+            rickyAnimator.SetBool("Float", false);
         }
         else
         {
@@ -92,6 +96,7 @@ public class PlayerController : MonoBehaviour
             rb.gravityScale = 0.25f;
             //savedSpeed = walkSpeed;
             walkSpeed = walkSpeed * 0.7f;
+            rickyAnimator.SetBool("Float", true);
         }
         if ((!isGrounded() || !isWallCling()) && Input.GetButtonUp("Jump"))
         {
@@ -113,7 +118,9 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         movement = Input.GetAxis("Horizontal");
+        rickyAnimator.SetFloat("WalkSpeed", Mathf.Abs(movement));
         rb.linearVelocity = new Vector2(movement * walkSpeed, rb.linearVelocity.y); // walk yes
+        rickyAnimator.SetFloat("Air", rb.linearVelocity.y);
 
         if (!isWallJumping)
         {

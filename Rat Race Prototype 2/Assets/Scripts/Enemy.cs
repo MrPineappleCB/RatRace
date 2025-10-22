@@ -36,11 +36,15 @@ public class Enemy : MonoBehaviour
     Seeker seeker;
     Rigidbody2D rb;
 
+    private Animator marthAnimator;
+    private float movement;
+
 
     void Start()
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
+        marthAnimator = GetComponent<Animator>();
 
         InvokeRepeating("UpdatePath", 0f, .5f);
         
@@ -123,6 +127,9 @@ public class Enemy : MonoBehaviour
 
         WallSlide();
         WallJump();
+
+        movement = Input.GetAxis("Horizontal");
+        marthAnimator.SetFloat("Speed", Mathf.Abs(movement));
     }
     private void WallSlide()
     {

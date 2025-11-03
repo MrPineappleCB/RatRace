@@ -23,9 +23,15 @@ public class EndScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "enemy")
+        if (other.gameObject.tag == "Enemy")
         {
             enemyWin();
+        }
+
+        else if (other.gameObject.tag == "Player")
+        {
+            playerWin();
+            enteredTrigger.Invoke();
         }
     }
 
@@ -36,6 +42,6 @@ public class EndScript : MonoBehaviour
     
     void playerWin()
     {
-        
+        rickyanimator.SetBool("Win", true);
     }
 }

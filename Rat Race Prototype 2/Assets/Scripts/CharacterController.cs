@@ -197,4 +197,11 @@ public class PlayerController : MonoBehaviour
         isWallJumping = false;
     }
 
+    public void Freeze()
+    {
+        walkSpeed = 0f;
+        jumpStrength = 0f;
+        movement = 0f;
+    }
+
 }

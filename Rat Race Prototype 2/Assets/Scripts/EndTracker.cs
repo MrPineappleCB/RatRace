@@ -17,6 +17,6 @@ public class EndTracker : MonoBehaviour
     void Update()
     {
         float distance = levelGenScript.finaldist;
-        transform.position = new Vector3(distance + 15/2, -8, 0);
+        transform.position = new Vector3(distance, -8, 0);
     }
 }

@@ -14,11 +14,11 @@ PrefabInstance:
       objectReference: {fileID: 5990563388612901836}
     - target: {fileID: 3503281803092590588, guid: c78212ab000116e4b8880d34cfbb80f5, type: 3}
       propertyPath: wallLayer.m_Bits
-      value: 0
+      value: 128
       objectReference: {fileID: 0}
     - target: {fileID: 3503281803092590588, guid: c78212ab000116e4b8880d34cfbb80f5, type: 3}
       propertyPath: groundLayer.m_Bits
-      value: 0
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 3976627399547512539, guid: c78212ab000116e4b8880d34cfbb80f5, type: 3}
       propertyPath: m_Name

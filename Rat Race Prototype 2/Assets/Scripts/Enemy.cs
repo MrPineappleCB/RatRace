@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
     private bool isWallSliding;
     private bool isWallJumping;
     private float wallJumpingDirection;
-    private float wallJumpingTime = 0.2f;
+    private float wallJumpingTime = 0.05f;
     private float wallJumpingCounter;
     private float wallJumpingDuration = 1f;
     private Vector2 wallJumpingPower = new Vector2(5f, 7f);
@@ -36,11 +36,15 @@ public class Enemy : MonoBehaviour
     Seeker seeker;
     Rigidbody2D rb;
 
+    private Animator marthAnimator;
+    private float movement;
+
 
     void Start()
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
+        marthAnimator = GetComponent<Animator>();
 
         InvokeRepeating("UpdatePath", 0f, .5f);
         
@@ -62,6 +66,7 @@ public class Enemy : MonoBehaviour
 
     public bool isGrounded()
     {
+        marthAnimator.SetBool("Air", false);
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer); //Returns true if circle around the position of ground check is touching/inside the groundlayer
     }
     public bool isWallCling()
@@ -73,9 +78,10 @@ public class Enemy : MonoBehaviour
     {
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
 
-        if (direction.y > transform.position.y && isWallCling())
+        if (direction.y + 1 > transform.position.y && isWallCling())
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpStrength);
+            marthAnimator.SetBool("Air", true);
         }
     }
     void FixedUpdate()
@@ -123,6 +129,8 @@ public class Enemy : MonoBehaviour
 
         WallSlide();
         WallJump();
+        
+        marthAnimator.SetFloat("Speed", Mathf.Abs(velocity.x));
     }
     private void WallSlide()
     {
@@ -130,20 +138,23 @@ public class Enemy : MonoBehaviour
         {
             isWallSliding = true;
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Clamp(rb.linearVelocity.y, -wallSlideSpeed, float.MaxValue));
+            marthAnimator.SetBool("Climb", true);
         }
         else
         {
             isWallSliding = false;
+            marthAnimator.SetBool("Climb", false);
         }
     }
     private void WallJump()
     {
-        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;   
+        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized; 
+        //marthAnimator.SetBool("Climb", true);  
         
         if (isWallSliding)
         {
             isWallJumping = false;
-            wallJumpingDirection = -transform.localScale.x;
+            wallJumpingDirection = transform.localScale.x;
             wallJumpingCounter = wallJumpingTime;
 
             CancelInvoke(nameof(StopWallJumping));

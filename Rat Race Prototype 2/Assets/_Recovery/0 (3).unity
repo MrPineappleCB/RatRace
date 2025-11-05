@@ -3927,7 +3927,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelGen
   levelLength: 10
   genCounter: 0
-  levelEnd: {fileID: 7986209417105290275, guid: 47240f57e8fb6b54a8e20ca5baadd2f0, type: 3}
 --- !u!4 &674455913
 Transform:
   m_ObjectHideFlags: 0

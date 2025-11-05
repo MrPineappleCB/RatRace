@@ -2425,7 +2425,7 @@ MonoBehaviour:
     m_Bits: 192
   jumpStrength: 10
   wallSlideSpeed: 1
-  target: {fileID: 449673927}
+  target: {fileID: 0}
   speed: 700
   nextWaypointDistance: 3
   enemyGFX: {fileID: 206743625}
@@ -2572,51 +2572,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0c2cf3bc49bb0f44bea79c215cf474c, type: 3}
---- !u!1 &449673925
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 449673927}
-  - component: {fileID: 449673926}
-  m_Layer: 0
-  m_Name: End
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &449673926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 449673925}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2438caf2671c9f4dab4849d097c58c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EndTracker
-  levelEnd: {fileID: 7986209417105290275, guid: 47240f57e8fb6b54a8e20ca5baadd2f0, type: 3}
---- !u!4 &449673927
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 449673925}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 103.67154, y: 27.2405, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &458384979
 GameObject:
   m_ObjectHideFlags: 0
@@ -10479,4 +10434,3 @@ SceneRoots:
   - {fileID: 390291653}
   - {fileID: 1539106739}
   - {fileID: 674455913}
-  - {fileID: 449673927}

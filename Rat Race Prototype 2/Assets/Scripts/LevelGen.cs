@@ -8,7 +8,8 @@ public class LevelGen : MonoBehaviour
     public static List<GameObject> myListObjects = new List<GameObject>();
     public int genCounter = 0;
     float savedwidth = 0;
-    float totaldist = 0;
+    public float totaldist = 0;
+    public float finaldist = 0f;
   
     void Start()
     {
@@ -29,6 +30,10 @@ public class LevelGen : MonoBehaviour
             myObj.transform.position = transform.position;
             totaldist = width / 2 + savedwidth / 2 + totaldist;
             savedwidth = width;
+            if (genCounter == levelLength - 1)
+            {
+                finaldist = totaldist;
+            }
             genCounter++;
         }    
     }

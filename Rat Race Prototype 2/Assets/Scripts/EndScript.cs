@@ -26,6 +26,7 @@ public class EndScript : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             enemyWin();
+            enteredTrigger.Invoke();
         }
 
         else if (other.gameObject.tag == "Player")
@@ -37,11 +38,12 @@ public class EndScript : MonoBehaviour
 
     void enemyWin()
     {
-        rickyanimator.SetBool("", true);
+        rickyanimator.SetBool("Lose", true);
     }
     
     void playerWin()
     {
         rickyanimator.SetBool("Win", true);
+        marthanimator.SetBool("Lose", true);
     }
 }

@@ -26,16 +26,15 @@ public class LevelGen : MonoBehaviour
             int randSegment = Random.Range(0, myListObjects.Count);
             GameObject myObj = Instantiate(myListObjects[randSegment]) as GameObject;
             float width = myObj.GetComponent<SpriteRenderer>().bounds.size.x;
-            transform.position = new Vector3((width/2 + savedwidth/2) + totaldist, -8, 0);
+            transform.position = new Vector3((width / 2 + savedwidth / 2) + totaldist + 15, -8, 0);
             myObj.transform.position = transform.position;
-            totaldist = width / 2 + savedwidth / 2 + totaldist;
+            totaldist = (width / 2) + (savedwidth / 2) + totaldist;
             savedwidth = width;
-            if (genCounter == levelLength - 1)
-            {
-                finaldist = totaldist;
-            }
+            finaldist = myObj.transform.position.x + (width / 2) + (15 / 2);
             genCounter++;
-        }    
+        }
+
+        AstarPath.active.Scan();    
     }
 }
     

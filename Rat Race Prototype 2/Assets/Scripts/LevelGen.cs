@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LevelGen : MonoBehaviour
 {
-    [SerializeField] private float levelLength = 0f;
+    [SerializeField] public float levelLength = 0f;
     public static List<GameObject> myListObjects = new List<GameObject>();
     public int genCounter = 0;
     float savedwidth = 0;

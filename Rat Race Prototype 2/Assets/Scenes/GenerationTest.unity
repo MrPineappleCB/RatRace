@@ -4052,8 +4052,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelGen
   levelLength: 15
   genCounter: 0
+  lapCounter: 1
+  savedwidth: 0
   totaldist: 0
   finaldist: 0
+  gamemanager: {fileID: 0}
+  mainMenu: {fileID: 0}
 --- !u!4 &674455913
 Transform:
   m_ObjectHideFlags: 0
@@ -6437,7 +6441,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5430176568387779517, guid: 47240f57e8fb6b54a8e20ca5baadd2f0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 5430176568387779517, guid: 47240f57e8fb6b54a8e20ca5baadd2f0, type: 3}
       propertyPath: m_LocalPosition.y

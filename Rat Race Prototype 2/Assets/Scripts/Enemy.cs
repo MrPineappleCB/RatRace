@@ -39,12 +39,18 @@ public class Enemy : MonoBehaviour
     private Animator marthAnimator;
     private float movement;
 
+    public GameObject gamemanager;
+    public MainMenu mainMenu;
+
 
     void Start()
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
         marthAnimator = GetComponent<Animator>();
+        gamemanager = GameObject.FindGameObjectWithTag("GameManager");
+        mainMenu = gamemanager.GetComponent<MainMenu>();
+        Speed();
 
         InvokeRepeating("UpdatePath", 0f, .5f);
         
@@ -72,6 +78,22 @@ public class Enemy : MonoBehaviour
     public bool isWallCling()
     {
         return Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer); //Returns true if circle around the position of ground check is touching/inside the walllayer
+    }
+
+    void Speed()
+    {
+        if (mainMenu.difficulty == 1)
+        {
+            speed = 500;
+        }
+        else if (mainMenu.difficulty == 2)
+        {
+            speed = 600;
+        }
+        else if (mainMenu.difficulty == 3)
+        {
+            speed = 700;
+        }
     }
     
     void Update()

@@ -1,16 +1,25 @@
+using System.ComponentModel;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public bool easy = false;
-    public bool normal = false;
-    public bool hard = false;
+    public float difficulty = 0;
     public float lap = 0;
     public float laplength = 0;
+
+    public int dropdifficulty;
+    public int droplap;
+    public int droplength;
+    
+    void Start()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
     public void PlayGame()
     {
-        SceneManager.LoadScene("blank");
+        SceneManager.LoadScene("GenerationTest");
     }
 
     public void Quit()
@@ -18,26 +27,45 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    public void Easy()
+    public void Update()
     {
-        easy = true;
-        normal = false;
-        hard = false;
-    }
+        if (dropdifficulty == 0)
+        {
+            difficulty = 1;
+        }
+        else if (dropdifficulty == 1)
+        {
+            difficulty = 2;
+        }
+        else if (dropdifficulty == 2)
+        {
+            difficulty = 3;
+        }
 
-    public void Normal()
-    {
-        normal = true;
-        easy = false;
-        hard = false;
-    }
+        if (droplap == 0)
+        {
+            lap = 1;
+        }
+        else if (droplap == 1)
+        {
+            lap = 3;
+        }
+        else if (droplap == 2)
+        {
+            lap = 5;
+        }
 
-    public void Hard()
-    {
-        hard = true;
-        easy = false;
-        normal = false;
-    }
-
-
+        if (droplength == 0)
+        {
+            laplength = 10;
+        }
+        else if (droplength == 1)
+        {
+            laplength = 15;
+        }
+        else if (droplength == 2)
+        {
+            laplength = 20;
+        }
+    }  
 }

@@ -8,6 +8,7 @@ public class RickySlider : MonoBehaviour
     public Slider slider;
     bool firstcheck = false;
     float fulldist;
+    public float distance;
     
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -25,7 +26,7 @@ public class RickySlider : MonoBehaviour
             firstcheck = true;
         }
         
-        float distance = end.transform.position.x - player.transform.position.x;
+        distance = end.transform.position.x - player.transform.position.x;
         float slidervalue = 100 - ((distance/fulldist) * 100);
         slider.value = slidervalue;
 

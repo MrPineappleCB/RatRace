@@ -14,7 +14,7 @@ public class LevelGen : MonoBehaviour
     public float savedwidth = 0;
     public float totaldist = 0;
     public float finaldist = 0f;
-    float savdist;
+    public float savdist;
     float lapdist;
     float enddist = 7.5f;
     public GameObject gamemanager;
@@ -36,7 +36,7 @@ public class LevelGen : MonoBehaviour
 
         while (genCounter < levelLength)
         {
-            int randSegment = Random.Range(0, myListObjects.Count);
+            int randSegment = Random.Range(0, myListObjects.Count -2);
             GameObject myObj = Instantiate(myListObjects[randSegment]) as GameObject;
             lapList.Add(myObj);
             float width = myObj.GetComponent<SpriteRenderer>().bounds.size.x;
@@ -47,6 +47,11 @@ public class LevelGen : MonoBehaviour
             finaldist = myObj.transform.position.x + (savedwidth / 2) + enddist;
             savdist = finaldist;
             genCounter++;
+        }
+        if (mainMenu.lap != 1)
+        {
+            GameObject end = Instantiate(myListObjects[8]);
+            end.transform.position = new Vector3(finaldist,-8,0);
         }
 
         while (lapCounter < mainMenu.lap)
@@ -59,8 +64,12 @@ public class LevelGen : MonoBehaviour
                 lapdist = lapObj.transform.position.x + (width/2) + enddist;
             }
             savdist = lapdist;
+            GameObject lapend = Instantiate(myListObjects[8]);
+            lapend.transform.position = new Vector3(savdist,-8,0);
             lapCounter++;
         }
+
+        
 
 
         AstarPath.active.Scan();    

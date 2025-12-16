@@ -1,4 +1,7 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 
 public class EndScript : MonoBehaviour
@@ -6,6 +9,9 @@ public class EndScript : MonoBehaviour
 
     public Animator rickyanimator;
     public Animator marthanimator;
+    public GameObject endMenu;
+    public Enemy enemy;
+    public TMP_Text endText;
 
     public UnityEvent enteredTrigger;
 
@@ -38,12 +44,23 @@ public class EndScript : MonoBehaviour
 
     void enemyWin()
     {
+        endText.text = ("You Lose");
         rickyanimator.SetBool("Lose", true);
+        StartCoroutine(RickyDeath());
+
     }
     
     void playerWin()
     {
-        rickyanimator.SetBool("Win", true);
-        marthanimator.SetBool("Lose", true);
+        endText.text = ("You Win!");
+        endMenu.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    IEnumerator RickyDeath()
+    {
+        yield return new WaitForSeconds(2f);
+        endMenu.SetActive(true);
+        Time.timeScale = 0f;
     }
 }

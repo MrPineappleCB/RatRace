@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform wallCheck;
     [SerializeField] private LayerMask wallLayer;
+    [SerializeField] private Transform losePosititon;
+    [SerializeField] private Transform endStartPosition;
 
     [SerializeField] private float jumpStrength = 10f;
     [SerializeField] private float wallSlideSpeed = 2f;
@@ -105,6 +107,11 @@ public class Enemy : MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpStrength);
             marthAnimator.SetBool("Air", true);
         }
+
+        if (transform.position == target.position)
+        {
+            this.enabled = false;
+        }
     }
     void FixedUpdate()
     {
@@ -198,6 +205,13 @@ public class Enemy : MonoBehaviour
     private void StopWallJumping()
     {
         isWallJumping = false;
+    }
+
+    public void Lose()
+    {
+        seeker.enabled = false;
+        transform.position = endStartPosition.position;
+        target.position = losePosititon.position;
     }
 
 }

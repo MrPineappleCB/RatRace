@@ -20,7 +20,7 @@ public class LevelGen : MonoBehaviour
     public GameObject gamemanager;
     public MainMenu mainMenu;
   
-    void Start()
+    void Awake()
     {
         gamemanager = GameObject.FindGameObjectWithTag("GameManager");
         mainMenu = gamemanager.GetComponent<MainMenu>();

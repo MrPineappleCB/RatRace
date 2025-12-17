@@ -5,6 +5,13 @@ public class DropdownValue : MonoBehaviour
 {
     [SerializeField] private TMP_Dropdown dropdown;
     [SerializeField] private MainMenu mainmenu;
+    public GameObject gameManager;
+
+    void Start()
+    {
+        gameManager = GameObject.FindGameObjectWithTag("GameManager");
+        mainmenu = gameManager.GetComponent<MainMenu>();
+    }
 
     public void GetDifficultyValue()
     {

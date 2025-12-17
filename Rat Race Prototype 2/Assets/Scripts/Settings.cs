@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using System;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Settings : MonoBehaviour
 {
@@ -58,5 +59,15 @@ public class Settings : MonoBehaviour
     public void SetFullscreen(bool isFullscreen)
     {
         Screen.fullScreen = isFullscreen;
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
+    public void PlayGame()
+    {
+        SceneManager.LoadScene("GenerationTest");
     }
 }
